@@ -21,6 +21,12 @@
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
+			window.addEventListener('onEmbeddedMessagingReady', () => {
+				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+					Initial_URL_where_chat_launched__c: window.location.href
+				});
+			});
+
 			embeddedservice_bootstrap.init(
 				'00Dhu00000066fR',
 				'Flora_Channel_for_FL_Website_Chat',

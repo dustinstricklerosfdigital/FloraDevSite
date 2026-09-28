@@ -23,9 +23,13 @@
 
 			window.addEventListener('onEmbeddedMessagingReady', () => {
 				console.log('FLORA DEBUG: onEmbeddedMessagingReady fired, URL =', window.location.href);
+				
 				embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
 					InitialURL: window.location.href
 				});
+
+				embeddedservice_bootstrap.prechatAPI.setValidateInputs(false);
+
 				console.log('FLORA DEBUG: setHiddenPrechatFields called');
 			});
 

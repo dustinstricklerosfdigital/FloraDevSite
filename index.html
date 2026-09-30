@@ -3,38 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Embedded Service Test Page</title>
+  <title>Embedded Service Testing</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; line-height: 1.6; padding: 0 20px; }
     h1 { color: #032D60; }
   </style>
 </head>
 <body>
-  <h1>Embedded Service Test Page</h1>
-  <p>This is a throwaway page to test a Salesforce Embedded Service chat deployment.</p>
+  <h1>Embedded Service Testing</h1>
+  <p>This is a testing page for Salesforce Embedded Service chat.</p>
   <p>If the chat is configured correctly, a chat bubble/button should appear on this page.</p>
 
-  <!-- === PASTE YOUR SALESFORCE EMBEDDED SERVICE SNIPPET BELOW === -->
+  <!-- === SALESFORCE EMBEDDED SERVICE SNIPPET === -->
 
-  <script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+  <script type="text/javascript">
+    window.addEventListener("onEmbeddedMessagingReady", () => {
+      console.log("Received the onEmbeddedMessagingReady event…");
 
-			embeddedservice_bootstrap.init(
-				'00Dhu00000066fR',
-				'Flora_Channel_for_FL_Website_Chat',
-				'https://forestlawnmortuary--dustin.sandbox.my.site.com/ESWFloraChannelforFLW1787828990460',
-				{
-					scrt2URL: 'https://forestlawnmortuary--dustin.sandbox.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://forestlawnmortuary--dustin.sandbox.my.site.com/ESWFloraChannelforFLW1787828990460/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+      embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+        InitialURL: window.location.href
+      });
+    });
+
+    function initEmbeddedMessaging() {
+      try {
+        embeddedservice_bootstrap.settings.language = "en_US";
+
+        embeddedservice_bootstrap.init(
+          "00Dhu00000066fR",
+          "Flora_Channel_for_FL_Website_Chat",
+          "https://forestlawnmortuary--dustin.sandbox.my.site.com/ESWFloraChannelforFLW1787828990460",
+          {
+            scrt2URL: "https://forestlawnmortuary--dustin.sandbox.my.salesforce-scrt.com"
+          }
+        );
+      } catch (err) {
+        console.error("Error loading Embedded Messaging: ", err);
+      }
+    }
+  </script>
+  <script
+    type="text/javascript"
+    src="https://forestlawnmortuary--dustin.sandbox.my.site.com/ESWFloraChannelforFLW1787828990460/assets/js/bootstrap.min.js"
+    onload="initEmbeddedMessaging()">
+  </script>
 
   <!-- === END SNIPPET === -->
 </body>
